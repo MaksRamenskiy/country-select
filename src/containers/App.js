@@ -14,7 +14,7 @@ class App extends React.Component {
                 <Select
                     options={this.props.userCountry.list}
                     value={this.props.userCountry.current}
-                    onChange={this.props.changeCountryCode}
+                    onChange={this.props.changeCountry}
                     optionIdKey="code"
                     optionNameKey="name"
                     labelText="Выберите страну"
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    changeCountryCode: (nextCode) =>  {
+    changeCountry: (nextCode) =>  {
         dispatch({type: 'CHANGE_COUNTRY', payload: {code: nextCode}})
     },
 });
