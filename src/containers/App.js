@@ -15,7 +15,7 @@ class App extends React.Component {
                     options={this.props.userCountry.list}
                     value={this.props.userCountry.current}
                     onChange={this.props.changeCountryCode}
-                    native={this.props.browserDevice === 'Mobile'} />
+                    native={this.props.browser.deviceType === 'Mobile'} />
             </div>
         )
     }
@@ -23,7 +23,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     userCountry: state.userCountry,
-    browserDevice: state.browser
+    browser: state.browser
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -8,6 +8,10 @@ const initialUserCountryState = {
     current: {}
 }
 
+const initialBrowserState = {
+    deviceType: ''
+}
+
 const userCountry = (state=initialUserCountryState, action) => {
     switch (action.type) {
         case 'CHANGE_COUNTRY':
@@ -20,11 +24,11 @@ const userCountry = (state=initialUserCountryState, action) => {
     }
 }
 
-const browser = (state='', action) => {
+const browser = (state=initialBrowserState, action) => {
     switch (action.type) {
         case 'CHECK_BROWSER_DEVICE':
             const browserType = md.mobile() ? 'Mobile' : 'Desktop'
-            return browserType;
+            return {...state, deviceType: browserType};
         default:
             return state;
     }

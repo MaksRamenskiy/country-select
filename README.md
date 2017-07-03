@@ -12,6 +12,8 @@ Need to be implement:
 - dropdown direction
 - highlight search results
 - actionCreators
+? handle keyDown for better UX Search
+- sort array
 
 Self review:
 - Нужно добавить возможность указывать ключи обьекта с которыми мы работаем,
