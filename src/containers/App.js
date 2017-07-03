@@ -15,6 +15,9 @@ class App extends React.Component {
                     options={this.props.userCountry.list}
                     value={this.props.userCountry.current}
                     onChange={this.props.changeCountryCode}
+                    optionIdKey="code"
+                    optionNameKey="name"
+                    labelText="Выберите страну"
                     native={this.props.browser.deviceType === 'Mobile'} />
             </div>
         )

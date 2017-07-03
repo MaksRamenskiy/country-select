@@ -14,7 +14,7 @@ class DesktopSelect extends React.Component {
         filterText: ''
     }
 
-    handleInputFocus = (event) => {
+    handleInputFocus = () => {
         this.setState({
             isFocused: true,
             isOpened: true
