@@ -12,7 +12,7 @@ Need to be implement:
 - dropdown direction
 - highlight search results
 - actionCreators
-? handle keyDown for better UX Search
+- ? handle keyDown for better UX Search ?
 - sort array
 
 Self review:
