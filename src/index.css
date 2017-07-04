@@ -154,6 +154,10 @@ html {
   font-size: 15px;
   padding: 8px 15px;
 }
+.select__option-text .highlight {
+  color: #ffa500;
+  text-decoration: underline;
+}
 .App__title {
   text-align: center;
   font-size: 32px;
