@@ -19,8 +19,8 @@
     "react-scripts": "0.9.x"
   },
   "scripts": {
-    "start": "react-scripts-with-stylus start src/index.styl",
-    "build": "react-scripts-with-stylus build src/index.styl",
+    "start": "react-scripts-with-stylus start src/styles/index.styl",
+    "build": "react-scripts-with-stylus build src/styles/index.styl",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

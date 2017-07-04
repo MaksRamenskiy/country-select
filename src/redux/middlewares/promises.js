@@ -1,5 +1,3 @@
-import COUNTRIES from './../countries';
-
 const middleware = store => next => action => {
     if (action.type !== 'PROMISE') {
         return next(action);

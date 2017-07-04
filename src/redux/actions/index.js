@@ -1,4 +1,4 @@
-import {getCountries} from './../api';
+import {getCountries} from './../../api';
 
 const loadCountriesAction = () => ({
     type: 'PROMISE',

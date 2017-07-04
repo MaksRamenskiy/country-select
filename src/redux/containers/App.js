@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Select from './../components/Select/';
+import Select from './../../components/Select/';
 import block from 'bem-cn';
 import {loadCountriesAction, changeCountryAction, checkBrowserDeviceAction} from './../actions';
 
