@@ -33,12 +33,11 @@ class Menu extends React.Component {
             return option[optionSearchKey].toLowerCase().indexOf(filterText.toLowerCase()) >= 0
         });
 
+        const filteredMenu = filteredOptions.length ? this.renderMenu(filteredOptions) : <div className={b('menu',{isEmpty: true})}>Ничего не найдено</div>
+
         return (
             <div className={b('menu-wrap')}>
-                {filteredOptions.length
-                    ? this.renderMenu(filteredOptions)
-                    : <div className={b('menu',{isEmpty: true})}>Ничего не найдено</div>
-                }
+                {options.length ? filteredMenu : <div>Loading...</div>}
             </div>
         )
     }

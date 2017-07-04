@@ -1,5 +1,3 @@
-import COUNTRIES from './../countries';
-
 const initialUserCountryState = {
     list: [],
     current: {}
@@ -8,10 +6,10 @@ const initialUserCountryState = {
 const userCountry = (state=initialUserCountryState, action) => {
     switch (action.type) {
         case 'CHANGE_COUNTRY':
-            const currentCountry = state.list.find(country => country.code === action.payload.code);
+            const currentCountry = state.list.find(country => country.code === action.countryCode);
             return {...state, current: currentCountry}
-        case 'GET_COUNTRIES':
-            return {...state, list: COUNTRIES}
+        case 'COUNTRIES_LOADED':
+            return {...state, list: action.payload}
         default:
             return state;
     }

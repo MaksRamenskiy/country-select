@@ -2,9 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Select from './../components/Select/';
 import block from 'bem-cn';
+import {loadCountriesAction, changeCountryAction, checkBrowserDeviceAction} from './../actions';
 
 
 class App extends React.Component {
+    componentDidMount() {
+        this.props.checkBrowserDevice();
+        this.props.loadCountries();
+    }
+
     render() {
         const b = block('App');
 
@@ -31,8 +37,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     changeCountry: (nextCode) =>  {
-        dispatch({type: 'CHANGE_COUNTRY', payload: {code: nextCode}})
+        dispatch(changeCountryAction(nextCode))
     },
+    loadCountries: () => {
+        dispatch(loadCountriesAction())
+    },
+    checkBrowserDevice: () => {
+        dispatch(checkBrowserDeviceAction())
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

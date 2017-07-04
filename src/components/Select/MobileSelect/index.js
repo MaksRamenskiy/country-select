@@ -11,6 +11,7 @@ class MobileSelect extends React.Component {
             <div className={b}>
 
                 <div className={b('label')}>
+                    {!options.length && <div className={b('loader')}>Loading...</div>}
                     {value && <div className={b('value')}>{value[optionNameKey]}</div>}
                     <div className={b('placeholder', {onTop: Boolean(value[optionNameKey])})}>{labelText}</div>
                 </div>
