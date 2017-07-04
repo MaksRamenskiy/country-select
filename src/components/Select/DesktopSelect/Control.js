@@ -3,21 +3,12 @@ import PropTypes from 'prop-types';
 import block from 'bem-cn';
 
 class Control extends React.Component {
-    inputChangeHandler = (event) => {
-        const inputValue = event.target.value;
-
-        this.setState({
-            name: inputValue
-        });
-        this.props.onInputChange(inputValue);
-    }
-
     render() {
         const b = block('select');
-        const {value, onFocus, inputRef, isFocused, hasValue = Boolean(value.code)} = this.props;
+        const {defaultValue, onFocus, onInputChange, inputRef, isFocused} = this.props;
 
-        const isHiddenValue = isFocused && hasValue;
-        const isLabelOnTop = isFocused || hasValue
+        const isHiddenValue = isFocused && Boolean(defaultValue);
+        const isLabelOnTop = isFocused || Boolean(defaultValue);
 
         return (
             <div className={b('control')}>
@@ -26,20 +17,20 @@ class Control extends React.Component {
                     className={b('input')}
                     onFocus={onFocus}
                     ref={inputRef}
-                    onChange={this.inputChangeHandler}/>
-                {value &&
-                    <div className={b('value', {hidden: isHiddenValue})}>{value.name}</div>}
+                    onChange={onInputChange}/>
+                {defaultValue && <div className={b('value', {hidden: isHiddenValue})}>{defaultValue}</div>}
                 <div className={b('label',{onTop: isLabelOnTop})}>Выберите страну</div>
             </div>
         )
     }
 }
 
-Control.PropTypes = {
-    value: PropTypes.obj,
+Control.propTypes = {
+    defaultValue: PropTypes.string,
     onFocus: PropTypes.func,
     onInputChange: PropTypes.func,
-    inputRef: PropTypes.func
+    inputRef: PropTypes.func,
+    isFocused: PropTypes.bool
 }
 
 export default Control;

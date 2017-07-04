@@ -33,7 +33,11 @@ class MobileSelect extends React.Component {
 
 MobileSelect.propTypes = {
     options: PropTypes.array,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    optionIdKey: PropTypes.string,
+    optionNameKey: PropTypes.string,
+    labelText: PropTypes.string,
+    value: PropTypes.object
 }
 
 export default MobileSelect;

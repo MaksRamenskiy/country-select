@@ -8,10 +8,10 @@ import onClickOutside from 'react-onclickoutside';
 
 class DesktopSelect extends React.Component {
     state = {
-        options: this.props.options,
         isFocused: false,
         isOpened: false,
-        filterText: ''
+        filterText: '',
+        defaultValue: ''
     }
 
     handleInputFocus = () => {
@@ -22,28 +22,36 @@ class DesktopSelect extends React.Component {
     }
 
     handleChange = (option) => {
-        this.props.onChange(option.code);
-        this.searchInput.value = '';
+        const optionIdKey = this.props.optionIdKey;
+        const optionNameKey = this.props.optionNameKey;
+
         this.setState({
             isOpened: false,
             isFocused: false,
-            filterText: ''
+            filterText: '',
+            defaultValue: option[optionNameKey]
         });
+
+        this.input.value = '';
+        this.props.onChange(option[optionIdKey]);
     }
 
-    handleInputChange = (inputValue) => {
+    handleInputChange = (event) => {
+        const inputValue = event.target.value;
+
         this.setState({
             filterText: inputValue
         });
     }
 
     handleClickOutside() {
-        this.searchInput.value = '';
         this.setState({
             isFocused: false,
             isOpened: false,
             filterText: ''
-        })
+        });
+
+        this.input.value = '';
     }
 
     render() {
@@ -55,8 +63,8 @@ class DesktopSelect extends React.Component {
                     isFocused={this.state.isFocused}
                     onFocus={this.handleInputFocus}
                     onInputChange={this.handleInputChange}
-                    inputRef={(el) => {this.searchInput = el}}
-                    value={this.props.value}/>
+                    inputRef={(input) => {this.input = input}}
+                    defaultValue={this.state.defaultValue}/>
                 {this.state.isOpened &&
                 <Menu
                     options={this.props.options}
@@ -69,7 +77,11 @@ class DesktopSelect extends React.Component {
 
 DesktopSelect.propTypes = {
     options: PropTypes.array,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    optionIdKey: PropTypes.string,
+    optionNameKey: PropTypes.string,
+    labelText: PropTypes.string,
+    value: PropTypes.object,
 }
 
 export default onClickOutside(DesktopSelect);

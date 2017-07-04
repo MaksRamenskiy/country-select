@@ -20,6 +20,10 @@ class Select extends React.Component {
 Select.propTypes = {
     options: PropTypes.array,
     onChange: PropTypes.func,
+    optionIdKey: PropTypes.string,
+    optionNameKey: PropTypes.string,
+    labelText: PropTypes.string,
+    value: PropTypes.object,
     native: PropTypes.bool
 }
 
