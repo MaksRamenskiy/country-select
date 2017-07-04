@@ -67,6 +67,9 @@ class DesktopSelect extends React.Component {
                     defaultValue={this.state.defaultValue}/>
                 {this.state.isOpened &&
                 <Menu
+                    optionIdKey={this.props.optionIdKey}
+                    optionNameKey={this.props.optionNameKey}
+                    optionSearchKey={this.props.optionNameKey}
                     options={this.props.options}
                     onClick={this.handleChange}
                     filterText={this.state.filterText} />}

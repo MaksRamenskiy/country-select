@@ -1,27 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn';
+import Highlighter from './Highlighter';
 
 class Menu extends React.Component {
-    clickHandler(option) {
-        this.props.onClick(option);
-    }
-
     renderMenu(filteredOptions) {
         const b = block('select');
         return (
             <ul className={b('menu')}>
                 {
-                    filteredOptions
-                        .map((option) => {
-                            return (
-                                <li className={b('option')}
-                                    onClick={this.clickHandler.bind(this, option)}
-                                    key={option.code}>
-                                    {option.name}
-                                </li>
-                            )
-                        })
+                    filteredOptions.map((option) => {
+                        return (
+                            <li className={b('option')}
+                                onClick={this.props.onClick.bind(this, option)}
+                                key={option[this.props.optionIdKey]}>
+                                <Highlighter filter={this.props.filterText}>
+                                    {option[this.props.optionNameKey]}
+                                </Highlighter>
+                            </li>
+                        )
+                    })
                 }
             </ul>
         )
@@ -29,9 +27,10 @@ class Menu extends React.Component {
 
     render() {
         const b = block('select');
-        const {options, filterText} = this.props;
+        const {options, filterText, optionSearchKey} = this.props;
+
         const filteredOptions = options.filter(option => {
-            return option.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+            return option[optionSearchKey].toLowerCase().indexOf(filterText.toLowerCase()) >= 0
         });
 
         return (
@@ -48,7 +47,10 @@ class Menu extends React.Component {
 Menu.propTypes = {
     options: PropTypes.array,
     onClick: PropTypes.func,
-    filterText: PropTypes.string
+    filterText: PropTypes.string,
+    optionIdKey: PropTypes.string,
+    optionNameKey: PropTypes.string,
+    optionSearchKey: PropTypes.string
 }
 
 export default Menu;
