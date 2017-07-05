@@ -9,7 +9,6 @@ html {
 .select-mobile {
   position: relative;
   width: 300px;
-  margin: auto;
 }
 .select-mobile__loader {
   position: absolute;
@@ -23,6 +22,8 @@ html {
 .select-mobile__value {
   padding: 0 20px;
   line-height: 48px;
+  height: 48px;
+  overflow: hidden;
   transition: opacity 0.25s;
 }
 .select-mobile__placeholder {
@@ -107,6 +108,8 @@ html {
   font-size: 15px;
   padding: 0 15px;
   line-height: 48px;
+  height: 48px;
+  overflow: hidden;
   opacity: 1;
   pointer-events: none;
 }

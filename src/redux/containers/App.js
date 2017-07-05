@@ -23,11 +23,12 @@ class App extends React.Component {
 
     render() {
         const b = block('App');
+        const isMobile = this.props.browser.deviceType === 'Mobile';
 
         return (
             <div className={b({alignBottom: this.state.contentAlignBottom})}>
                 <h1 className={b('title')}>Select Example</h1>
-                <button className={b('button')} onClick={this.changeAlignContent}>Toggle select position</button>
+                {!isMobile && <button className={b('button')} onClick={this.changeAlignContent}>Toggle select position</button>}
                 <Select
                     options={this.props.userCountry.list}
                     value={this.props.userCountry.current}
@@ -35,7 +36,7 @@ class App extends React.Component {
                     optionIdKey="code"
                     optionNameKey="name"
                     labelText="Выберите страну"
-                    native={this.props.browser.deviceType === 'Mobile'}/>
+                    native={isMobile}/>
             </div>
         )
     }
