@@ -5,13 +5,13 @@ import block from 'bem-cn';
 class Control extends React.Component {
     render() {
         const b = block('select');
-        const {defaultValue, onFocus, onInputChange, inputRef, isFocused} = this.props;
+        const {defaultValue, onFocus, onInputChange, inputRef, isFocused, direction} = this.props;
 
         const isHiddenValue = isFocused && Boolean(defaultValue);
         const isLabelOnTop = isFocused || Boolean(defaultValue);
 
         return (
-            <div className={b('control')}>
+            <div className={b('control', {direction: direction})}>
                 <input
                     type="text"
                     className={b('input')}

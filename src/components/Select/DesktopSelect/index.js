@@ -11,13 +11,25 @@ class DesktopSelect extends React.Component {
         isFocused: false,
         isOpened: false,
         filterText: '',
-        defaultValue: ''
+        defaultValue: '',
+        direction: 'down'
+    }
+
+    getMenuDirection() {
+        const rect = this.input.getBoundingClientRect();
+        const screenHeight = document.documentElement.clientHeight;
+        const inputDistanceToTopBorderScreen = rect.bottom;
+        const inputDistanceTopBottomBorderScreen = screenHeight - inputDistanceToTopBorderScreen;
+        const visibleArea = 300;
+
+        return inputDistanceTopBottomBorderScreen > visibleArea ? 'down' : 'up';
     }
 
     handleInputFocus = () => {
         this.setState({
             isFocused: true,
-            isOpened: true
+            isOpened: true,
+            direction: this.getMenuDirection()
         })
     }
 
@@ -64,6 +76,7 @@ class DesktopSelect extends React.Component {
                     onFocus={this.handleInputFocus}
                     onInputChange={this.handleInputChange}
                     inputRef={(input) => {this.input = input}}
+                    direction={this.state.direction}
                     defaultValue={this.state.defaultValue}/>
                 {this.state.isOpened &&
                 <Menu
@@ -72,6 +85,7 @@ class DesktopSelect extends React.Component {
                     optionSearchKey={this.props.optionNameKey}
                     options={this.props.options}
                     onClick={this.handleChange}
+                    direction={this.state.direction}
                     filterText={this.state.filterText} />}
             </div>
         )

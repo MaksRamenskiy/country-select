@@ -72,7 +72,6 @@ html {
 .select {
   position: relative;
   width: 300px;
-  margin: auto;
 }
 .select__control {
   position: relative;
@@ -81,6 +80,16 @@ html {
   border: 1px solid #808080;
   border-radius: 2px;
 }
+.select__control--direction_down:after {
+  margin-top: -3px;
+  border-color: #808080 transparent transparent transparent;
+  border-width: 5px 5px 0 5px;
+}
+.select__control--direction_up:after {
+  margin-bottom: -3px;
+  border-color: transparent transparent #808080 transparent;
+  border-width: 0 5px 5px 5px;
+}
 .select__control:after {
   position: absolute;
   top: 50%;
@@ -88,10 +97,7 @@ html {
   display: block;
   width: 0;
   height: 0;
-  margin-top: -3px;
-  border-color: #808080 transparent transparent transparent;
   border-style: solid;
-  border-width: 5px 5px 0 5px;
   content: ' ';
 }
 .select__value {
@@ -109,6 +115,7 @@ html {
 }
 .select__label {
   position: absolute;
+  z-index: 5;
   top: 0;
   bottom: 0;
   font-size: 14px;
@@ -138,20 +145,26 @@ html {
 }
 .select__menu-wrap {
   position: absolute;
-  top: 100%;
   width: 100%;
   z-index: 1;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
   background-color: #fff;
   border: 1px solid #808080;
+  max-height: 240px;
+}
+.select__menu-wrap--direction_down {
+  top: 100%;
   margin-top: -1px;
-  max-height: 200px;
+}
+.select__menu-wrap--direction_up {
+  bottom: 100%;
+  margin-bottom: -1px;
 }
 .select__menu {
   text-align: left;
   list-style: none;
-  max-height: 198px;
+  max-height: 238px;
   overflow-y: auto;
 }
 .select__menu--isEmpty {
@@ -161,15 +174,36 @@ html {
 .select__option {
   cursor: pointer;
   font-size: 15px;
-  padding: 8px 15px;
+  font-weight: 300;
+  padding: 10px 15px;
 }
 .select__option-text .highlight {
   color: #ffa500;
   text-decoration: underline;
 }
+.App {
+  padding: 30px 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.App--alignBottom {
+  justify-content: space-between;
+}
+.App__button {
+  position: fixed;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  right: 30px;
+  bottom: 30px;
+}
 .App__title {
   text-align: center;
   font-size: 32px;
-  margin: 50px 0;
   font-weight: 400;
+  margin: 20px 0 180px;
 }

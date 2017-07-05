@@ -6,17 +6,28 @@ import {loadCountriesAction, changeCountryAction, checkBrowserDeviceAction} from
 
 
 class App extends React.Component {
+    state = {
+        contentAlignBottom: false
+    }
+
     componentDidMount() {
         this.props.checkBrowserDevice();
         this.props.loadCountries();
+    }
+
+    changeAlignContent = () => {
+        this.setState({
+            contentAlignBottom: !this.state.contentAlignBottom
+        })
     }
 
     render() {
         const b = block('App');
 
         return (
-            <div className={b}>
+            <div className={b({alignBottom: this.state.contentAlignBottom})}>
                 <h1 className={b('title')}>Select Example</h1>
+                <button className={b('button')} onClick={this.changeAlignContent}>Toggle select position</button>
                 <Select
                     options={this.props.userCountry.list}
                     value={this.props.userCountry.current}
@@ -24,7 +35,7 @@ class App extends React.Component {
                     optionIdKey="code"
                     optionNameKey="name"
                     labelText="Выберите страну"
-                    native={this.props.browser.deviceType === 'Mobile'} />
+                    native={this.props.browser.deviceType === 'Mobile'}/>
             </div>
         )
     }
@@ -36,7 +47,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    changeCountry: (nextCode) =>  {
+    changeCountry: (nextCode) => {
         dispatch(changeCountryAction(nextCode))
     },
     loadCountries: () => {
