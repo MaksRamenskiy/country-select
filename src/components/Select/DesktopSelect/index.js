@@ -19,10 +19,10 @@ class DesktopSelect extends React.Component {
         const rect = this.input.getBoundingClientRect();
         const screenHeight = document.documentElement.clientHeight;
         const inputDistanceToTopBorderScreen = rect.bottom;
-        const inputDistanceTopBottomBorderScreen = screenHeight - inputDistanceToTopBorderScreen;
+        const inputDistanceToBottomBorderScreen = screenHeight - inputDistanceToTopBorderScreen;
         const visibleArea = 300;
 
-        return inputDistanceTopBottomBorderScreen > visibleArea ? 'down' : 'up';
+        return inputDistanceToBottomBorderScreen > visibleArea ? 'down' : 'up';
     }
 
     handleInputFocus = () => {
