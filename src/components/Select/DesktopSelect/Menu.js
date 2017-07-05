@@ -4,12 +4,19 @@ import block from 'bem-cn';
 import Highlighter from './Highlighter';
 
 class Menu extends React.Component {
-    renderMenu(filteredOptions) {
+    renderMenu(filterText) {
         const b = block('select');
+
+        const options = !filterText ? this.props.options : this.props.options.filter(option => {
+            return option[this.props.optionSearchKey].toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+        });
+
+        if (!options.length) return <div className={b('menu',{isEmpty: true})}>Ничего не найдено</div>
+
         return (
             <ul className={b('menu')}>
                 {
-                    filteredOptions.map((option) => {
+                    options.map((option) => {
                         return (
                             <li className={b('option')}
                                 onClick={this.props.onClick.bind(this, option)}
@@ -27,17 +34,13 @@ class Menu extends React.Component {
 
     render() {
         const b = block('select');
-        const {options, filterText, optionSearchKey, direction} = this.props;
+        const {options, filterText, direction} = this.props;
 
-        const filteredOptions = options.filter(option => {
-            return option[optionSearchKey].toLowerCase().indexOf(filterText.toLowerCase()) >= 0
-        });
-
-        const filteredMenu = filteredOptions.length ? this.renderMenu(filteredOptions) : <div className={b('menu',{isEmpty: true})}>Ничего не найдено</div>
+        const menu = filterText ? this.renderMenu(filterText) : this.renderMenu();
 
         return (
             <div className={b('menu-wrap', {direction: direction})}>
-                {options.length ? filteredMenu : <div>Loading...</div>}
+                {options.length ? menu : <div>Loading...</div>}
             </div>
         )
     }
