@@ -3,19 +3,13 @@
 
 Implemented:
 - redux structure
+- promises middleWare
 - native select
 - desktop select
 - search
+- direction
+- sorting
+- highlighter
 
-Need to be implement:
-- middleWare for async load countries
-- dropdown direction
-- highlight search results
-- actionCreators
-- ? handle keyDown for better UX Search ?
-- sort array
-
-Self review:
-- Нужно добавить возможность указывать ключи обьекта с которыми мы работаем,
-  чтобы была возможность скормить любой массив селекту
-- Описать value PropTypes
+Need to be implement ?
+- handle keyDown for better UX Search
