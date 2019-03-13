@@ -6,7 +6,7 @@ Demo: https://maksramenskiy.github.io/country-select/
 Implemented:
 - redux structure
 - promises middleWare
-- native select
+- mobile native select
 - desktop select
 - search
 - direction
